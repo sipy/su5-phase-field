@@ -98,7 +98,7 @@ Current limitations include:
 
 ## Related Manuscript
 
-This code accompanies the manuscript:
+This code accompanies the paper:
 
 [**“Spacetime as an Oscillatory Phase Field: Semiclassical Dynamics, Topological Mass Spectra, and Cosmology in a Gauged SU(5) Prototype”**](https://drive.google.com/file/d/1lilhGr5TrhsMojbvZNKShBLQ52LQKSEe/view?usp=sharing)
 
