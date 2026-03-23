@@ -10,6 +10,8 @@ These notebooks utilize PyTorch's `float64` Autograd engine to compute 4th-order
 
 ### Files
 
+0. **`0_Kibble-Zurek_Engine.ipynb`** **The Genesis Event.** This notebook simulates the 3D Kibble-Zurek quench on the GPU. It initializes a random high-entropy phase field (inflationary fluctuations) and executes a potential quench, demonstrating how primordial topological complexity ($\mathcal{B} \approx 7600$) spontaneously collapses and crystallizes into a discrete number of stable matter seeds ($\mathcal{B} \approx 5$).
+
 1. **`1_B1_Particle_Crystallization.ipynb`** Demonstrates the stabilization of a single $B=1$ topological seed into a massive fundamental fermion (Proton/Lepton prototype) with a stable rest-mass plateau ($E_{rest} \approx 7.24$).
 
 2. **`2_DT_Nuclear_Fusion.ipynb`** Demonstrates the stereographic merging of $B=2$ (Deuterium) and $B=3$ (Tritium) seeds. The simulation natively captures the strong force energy drop and the geometric decay of the unstable $B=5$ intermediate into a stable $B=4$ Alpha particle and a fast $B=1$ neutron.
