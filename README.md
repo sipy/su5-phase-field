@@ -1,45 +1,113 @@
-# SU(2) Subsector Simulations  
-for the SU(5) Phase-Field Phenomenological Prototype
+# SU(5) Phase-Field Cosmology & Topological Matter Simulations
 
-This repository contains the GPU-accelerated PyTorch notebooks that support the phenomenological framework presented in the paper  
-**“Spacetime as an Oscillatory Phase Field: A Phenomenological SU(5) Prototype…”** (TOE (11), dated 23 March 2026).
+This repository contains GPU-accelerated PyTorch notebooks exploring a **phenomenological phase-field framework** in which spacetime is modeled as an oscillatory field with topological excitations.
 
-All simulations are performed exclusively in the **reduced SU(2) ≃ O(4) topological subsector**. They are not full SU(5) dynamics and should be interpreted as numerical evidence for mechanism viability (stabilization, binding, seed formation, and qualitative nuclear analogues), not as proofs of physical reality.
+The current numerical work is focused on a computationally tractable **SU(2) / O(4) topological subsector** motivated by a broader gauged **SU(5) prototype**. The goal of these simulations is not to claim a complete first-principles derivation of modern physics, but to test whether topological stabilization, lattice binding, quench dynamics, and multi-soliton interactions exhibit the qualitative behavior required by the broader framework.
 
-### Author
+## Author
+
 **Simeon Ivaylov Petrov**  
-BSc Computer Science, Sofia, Bulgaria
+Sofia, Bulgaria
 
-### Notebooks
+## Overview
 
-0. **`0_Kibble-Zurek_Engine.ipynb`**  
-   Simulates the 3D post-inflationary quench on a 128³ lattice. Demonstrates domain-wall formation, coarsening, and the spontaneous emergence of localized regions carrying nontrivial winding (supporting the Kibble–Zurek-type seed-formation scenario in the paper).
+These notebooks use PyTorch with `torch.float64` precision and GPU acceleration to evaluate 3D non-linear sigma / Faddeev-Skyrme-type dynamics on large lattices (typically up to `128^3`).
 
-1. **`1_B1_Particle_Crystallization.ipynb`**  
-   Evolves a single B ≈ 1 hedgehog seed under constrained gradient flow. Shows stabilization of a localized topological defect at a nonzero rest-mass plateau while preserving winding number (illustrating how the fourth-order Skyrme term can overcome Derrick’s theorem in the lattice discretization).
+The repository explores several linked questions:
 
-2. **`2_DT_Nuclear_Fusion.ipynb`**  
-   Merges B = 2 and B = 3 configurations via stereographic product ansatz. Exhibits energy relaxation and spontaneous reorganization of the unstable intermediate into a more stable remnant plus emitted fragment (qualitative analogue of D–T fusion).
+- Can localized topological seeds remain stable under lattice relaxation?
+- Can higher-charge configurations exhibit binding, decay channels, and stability windows resembling qualitative nuclear behavior?
+- Can post-quench field dynamics generate persistent topological remnants from a high-entropy initial state?
+- Can matter-antimatter configurations exhibit topological cancellation while conserving total energy numerically?
 
-3. **`3_Heavy_Nuclei_Crystallization.ipynb`**  
-   Explores higher-charge states. By tuning the effective pion mass and Skyrme coefficient, a B = 7 configuration can be stabilized for extended relaxation time, indicating a stability window for heavier polyhedral configurations.
+The simulations are intended as **exploratory numerical evidence** for the viability of the stabilization mechanism and the broader phenomenological program.
 
-4. **`4_Matter_Antimatter_Annihilation.ipynb`**  
-   Collides a B = 1 seed with a B = −1 seed. Demonstrates topological charge cancellation to numerical precision and conversion of rest energy into high-frequency field oscillations (consistency check for matter–antimatter behaviour in the reduced model).
+## Scientific Scope
 
-### Usage Instructions
-- Run directly in **Google Colab** (T4 GPU or better recommended).  
-- Use `torch.float64` precision (already set in the notebooks).  
-- **Important**: Due to high VRAM usage on 128³ grids, restart the Colab session between notebooks to clear the GPU cache.
+This repository currently supports the following claims:
 
-### Relation to the Paper
-These notebooks provide the numerical backbone for Sections IV, VII–IX of TOE (11). All results are described qualitatively in the paper; the notebooks allow anyone to reproduce and extend the simulations.
+- numerical exploration of topological stabilization in an SU(2) / O(4) sector
+- qualitative study of binding, fusion-like decay pathways, and annihilation
+- high-resolution GPU relaxation of localized topological seeds
+- exploratory quench simulations motivated by Kibble-Zurek-type phase ordering
 
-The framework remains phenomenological. Full SU(5) dynamics, first-principles derivation of the macroscopic potential, and a realistic particle spectrum are left for future work (see Section X of the paper for a detailed discussion of scope and limitations).
+This repository does **not** yet provide:
 
-**Paper (latest version):**  
-[TOE (11) PDF](https://github.com/sipy/su5-phase-field/blob/main/TOE_(11).pdf) *(or the version linked in the arXiv preprint if uploaded)*
+- a full 3D lattice simulation of the complete 5×5 SU(5) field dynamics
+- a first-principles derivation of the Standard Model spectrum
+- a first-principles derivation of the inflationary potential
+- continuum-extrapolated or fully quantized results
 
----
+## Repository Structure
 
-Last updated: 23 March 2026
+### `0_Kibble-Zurek_Engine.ipynb`
+Explores a 3D quench scenario in which a high-entropy initial field relaxes toward a lower-energy vacuum configuration. The notebook tracks the reduction of total winding complexity and the emergence of persistent localized topological hotspots.
+
+### `1_B1_Particle_Crystallization.ipynb`
+Studies the relaxation of a localized `B = 1` topological seed into a stabilized soliton-like configuration with a non-zero rest-energy plateau.
+
+### `2_DT_Nuclear_Fusion.ipynb`
+Simulates the interaction of `B = 2` and `B = 3` topological seeds and examines whether the combined configuration exhibits binding, transient composite behavior, and decay into lower-energy products.
+
+### `3_Heavy_Nuclei_Crystallization.ipynb`
+Explores higher-charge configurations, including whether a `B = 7` seed can be stabilized into a long-lived polyhedral structure under modified parameter choices.
+
+### `4_Matter_Antimatter_Annihilation.ipynb`
+Studies the collision of `B = 1` and `B = -1` configurations and tracks topological cancellation together with the redistribution of energy into oscillatory radiation-like modes.
+
+## Numerical Setup
+
+The notebooks are designed for **Google Colab** or another CUDA-enabled environment with a GPU comparable to a **T4 or better**, ideally with at least **16 GB VRAM**.
+
+### Core numerical features
+
+- PyTorch-based tensor simulation
+- `torch.float64` precision
+- 3D lattices up to `128^3`
+- 4th-order finite-difference spatial stencils
+- gradient-flow relaxation
+- explicit symmetry-breaking terms where needed to control topological tails and lattice-boundary effects
+
+## Usage
+
+Open the notebooks in Google Colab or a local CUDA-enabled Jupyter environment.
+
+Recommended workflow:
+
+1. Run one notebook at a time
+2. Keep precision at `torch.float64`
+3. Restart the runtime between notebooks to clear GPU memory
+4. Save generated plots, topological diagnostics, and energy traces after each run
+
+## Important Notes
+
+Because these simulations are computationally heavy, GPU memory can become fragmented between runs. In Colab, it is recommended to use **Runtime → Restart session** between major notebooks.
+
+The results should be interpreted as **numerical experiments inside a phenomenological prototype**, not as definitive proof of a full unified theory.
+
+## Interpretation and Limitations
+
+The repository is meant to test whether the geometric and topological mechanisms proposed in the accompanying manuscript are numerically viable.
+
+Current limitations include:
+
+- reliance on a reduced topological subsector rather than full SU(5) lattice evolution
+- sensitivity to lattice size, resolution, and boundary effects
+- fitted phenomenological parameters in some sectors
+- absence of continuum extrapolation and full quantum corrections
+
+## Related Manuscript
+
+This code accompanies the manuscript:
+
+**“Spacetime as an Oscillatory Phase Field: Semiclassical Dynamics, Topological Mass Spectra, and Cosmology in a Gauged SU(5) Prototype”**
+
+## Citation
+
+If you use or discuss this repository, please cite the associated manuscript and link back to this repository.
+
+## License
+
+Add your preferred license here, for example:
+
+`MIT`, `Apache-2.0`, or `All rights reserved`
